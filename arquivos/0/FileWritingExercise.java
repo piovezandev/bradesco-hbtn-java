@@ -17,14 +17,17 @@ public class FileWritingExercise {
         try {
             FileWriter writer = new FileWriter(fileName);
             System.out.print("Digite o que achar necessario, digite sair para encerrar: ");
-            String conteudo = scanner.nextLine();
+            while (true) {
+                String conteudo = scanner.nextLine();
 
-            while (!conteudo.equalsIgnoreCase("sair")) {
+                if (conteudo.equalsIgnoreCase("sair")) {
+                    System.out.print("Arquivo foi criado e seu conteúdo foi salvo com sucesso.");
+                    break;
+                }
+
                 writer.write(conteudo + "\n");
-                conteudo = scanner.nextLine();
             }
             writer.close();
-            System.out.print("Arquivo foi criado e seu conteúdo foi salvo com sucesso.");
         } catch (IOException e) {
             e.printStackTrace();
         }
