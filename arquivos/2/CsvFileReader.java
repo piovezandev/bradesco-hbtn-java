@@ -20,8 +20,8 @@ public class CsvFileReader {
 				System.out.println("\n------------------------");
 				linha = leitor.readLine();
 			}
-
-            leitor.close();
+			leitor.close();
+			System.out.println("Leitura do arquivo concluída.");
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
