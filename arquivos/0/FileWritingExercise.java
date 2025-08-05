@@ -20,12 +20,12 @@ public class FileWritingExercise {
             while (true) {
                 String conteudo = scanner.nextLine();
 
-                if (conteudo.contains("sair")) {
+                if (linha.contains("sair") || linha.contains("break")) {
                     System.out.print("Arquivo foi criado e seu conteúdo foi salvo com sucesso.");
                     break;
                 }
 
-                writer.write(conteudo + "\n");
+                writer.write(conteudo);
             }
             writer.close();
         } catch (IOException e) {
