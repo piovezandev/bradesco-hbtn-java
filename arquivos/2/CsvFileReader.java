@@ -13,10 +13,10 @@ public class CsvFileReader {
 
             while (linha != null) {
 				String[] csv = linha.split(",");
-				System.out.print("Funcion�rio:" +csv[0]);
-				System.out.print("\nIdade:" +csv[1]);
-				System.out.print("\nDepartamento:" +csv[2]);
-				System.out.print("\nSalarial:" +csv[3]);
+				System.out.print("Funcionário: " +csv[0]);
+				System.out.print("\nIdade: " +csv[1]);
+				System.out.print("\nDepartamento: " +csv[2]);
+				System.out.print("\nSalarial: " +csv[3]);
 				System.out.println("\n------------------------");
 				linha = leitor.readLine();
 			}
