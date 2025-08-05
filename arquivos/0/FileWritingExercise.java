@@ -24,6 +24,7 @@ public class FileWritingExercise {
                 conteudo = scanner.nextLine();
             }
             writer.close();
+            System.out.print("Arquivo foi criado e seu conteúdo foi salvo com sucesso.");
         } catch (IOException e) {
             e.printStackTrace();
         }
