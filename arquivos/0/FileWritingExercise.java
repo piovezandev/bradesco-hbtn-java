@@ -20,7 +20,7 @@ public class FileWritingExercise {
             while (true) {
                 String conteudo = scanner.nextLine();
 
-                if (conteudo.equalsIgnoreCase("sair")) {
+                if (conteudo.contains("sair")) {
                     System.out.print("Arquivo foi criado e seu conteúdo foi salvo com sucesso.");
                     break;
                 }
