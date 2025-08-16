@@ -95,20 +95,20 @@ public class Estoque {
 
 	public void exibirEstoque() {
 		try {
-			BufferedReader leitor = new BufferedReader(new FileReader(getNomeArquivo()));
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(getNomeArquivo()));
 
-			String linha = leitor.readLine();
+			String linha = bufferedReader.readLine();
 
-            while (linha != null) {
+			while (linha != null) {
 				String[] csv = linha.split(",");
-				System.out.print("ID: " +csv[0]);
-				System.out.print("\nNome: " +csv[1]);
-				System.out.print("\nQuantidade: " +csv[2]);
-				System.out.print("\nPre�o: " +csv[3]);
-				System.out.println("\n");
-				linha = leitor.readLine();
+				Produto produto = new Produto(Integer.parseInt(csv[0]), csv[1], Integer.parseInt(csv[2]),
+						Double.parseDouble(csv[3]));
+				linha = bufferedReader.readLine();
+				System.out.println(produto.toString());
 			}
-            leitor.close();
+
+			bufferedReader.close();
+			bufferedReader.close();
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		}
