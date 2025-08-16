@@ -126,7 +126,10 @@ public class Estoque {
 			while (linha != null) {
 				String[] csv = linha.split(",");
 				if (csv.length < 4) {
-					produto = new Produto(Integer.parseInt(csv[0]), csv[1], 0,
+					produto = new Produto(
+							Integer.parseInt(csv[0]),
+							csv[1],
+							0,
 							Double.parseDouble(csv[2]));
 				}else {
 					produto = new Produto(Integer.parseInt(csv[0]), csv[1], Integer.parseInt(csv[2]),
@@ -135,25 +138,25 @@ public class Estoque {
 				linha = bufferedReader.readLine();
 				produtos.add(produto);
 			}
-			
+
 			bufferedReader.close();
-			
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(getNomeArquivo(), false));			
+
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(getNomeArquivo(), false));
 
 			List<Produto> produtosAtualizada = new ArrayList<Produto>();
-			
+
 			for (int i = 0; i < produtos.size(); i++) {
 				if(produtos.get(i).getId() == idAtualizar) {
 					produtos.get(i).setQuantidade(novaQuantidade);
 				}
 				produtosAtualizada.add(produtos.get(i));
 			}
-			
+
 			for (Produto product : produtosAtualizada) {
 				bufferedWriter.write(product.toCsv());
 				bufferedWriter.newLine();
 			}
-			
+
 			bufferedWriter.close();
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
