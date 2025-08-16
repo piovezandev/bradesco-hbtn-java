@@ -122,7 +122,9 @@ public class Estoque {
 
 			List<Produto> produtos = new ArrayList<Produto>();
 			Produto produto = null;
-			
+
+			limparArquivo();
+
 			while (linha != null) {
 				String[] csv = linha.split(",");
 				int quantidade = (csv[2] != "" || !csv[2].isEmpty()) ? Integer.parseInt(csv[2]) : 0;
@@ -155,7 +157,31 @@ public class Estoque {
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
+	public void limparArquivo() {
+		try {
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(getNomeArquivo()));
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(getNomeArquivo()));
+
+			String linha;
+			int linhaAtual = 1;
+
+			while ((linha = bufferedReader.readLine()) != null) {
+				String[] campos = linha.split(",");
+				if (campos.length == 4 && !campos[0].isEmpty() && !campos[1].isEmpty()) {
+					bufferedWriter.write(linha);
+					bufferedWriter.newLine();
+				}
+				linhaAtual++;
+			}
+
+			bufferedReader.close();
+			bufferedWriter.close();
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+
 	public String getNomeArquivo() {
 		return nomeArquivo;
 	}
