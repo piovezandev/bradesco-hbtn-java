@@ -126,7 +126,7 @@ public class Estoque {
 			while (linha != null) {
 				String[] csv = linha.split(",");
 				if (csv.length < 4) {
-					produto = new Produto(Integer.parseInt(csv[0]), csv[1], novaQuantidade,
+					produto = new Produto(Integer.parseInt(csv[0]), csv[1], 0,
 							Double.parseDouble(csv[2]));
 				}else {
 					produto = new Produto(Integer.parseInt(csv[0]), csv[1], Integer.parseInt(csv[2]),
