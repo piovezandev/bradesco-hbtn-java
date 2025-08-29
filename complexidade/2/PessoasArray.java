@@ -27,7 +27,7 @@ public class PessoasArray {
 		
 		while(inicio <= fim) {
 			meio = ((inicio + fim) /2);
-			System.out.println("Passando pelo indice:" + meio);
+			System.out.println("Passando pelo indice: " + meio);
 			
 			int achou = nome.compareToIgnoreCase(nomes[meio]);
 			
