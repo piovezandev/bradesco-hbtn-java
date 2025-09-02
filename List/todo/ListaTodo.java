@@ -64,9 +64,9 @@ public class ListaTodo {
 		for (int i = 0; i < tarefas.size(); i++) {
 			Tarefa tarefa = tarefas.get(i);
 			if (tarefa.isEstahFeita()) {
-			System.out.println(" [X]  Id: "+tarefa.getIdentificador()+" - Descricao: "+tarefa.getDescricao()+"");
+			System.out.println("[X]  Id: "+tarefa.getIdentificador()+" - Descricao: "+tarefa.getDescricao()+"");
 			}else {
-				System.out.println(" [ ]  Id: "+tarefa.getIdentificador()+" - Descricao: "+tarefa.getDescricao()+"");
+				System.out.println("[ ]  Id: "+tarefa.getIdentificador()+" - Descricao: "+tarefa.getDescricao()+"");
 			}
 		}
 	}
