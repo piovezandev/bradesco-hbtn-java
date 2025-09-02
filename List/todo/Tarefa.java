@@ -12,7 +12,7 @@ public class Tarefa {
 	
 	public void modificarDescricao(String descricao) {
 		if(descricao.isEmpty()) {
-			throw new IllegalArgumentException("Descricao de tarefa invalida");
+			System.out.println("Descricao de tarefa invalida");
 		}
 		setDescricao(descricao);
 	}
