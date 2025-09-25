@@ -56,7 +56,7 @@ public class Blog {
 	}
 
 	public Map<Categorias, Set<Post>> obterTodosPostsPorCategorias() {
-		Map<Categorias, Set<Post>> categorias = new HashMap<>();
+		Map<Categorias, Set<Post>> categorias = new TreeMap<Categorias, Set<Post>>();
 		for (Post post : postagens) {
 			categorias.computeIfAbsent(post.getCategoria(), k ->
 					new TreeSet<>(Comparator.comparing(Post::getTitulo))
