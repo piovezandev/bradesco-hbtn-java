@@ -45,7 +45,6 @@ public class Blog {
 
 	public Set<Post> obterPostsPorCategoria(Categorias categorias) {
 	    Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getTitulo));
-	    
 		for (Post post : postagens) {
 			 if(post.getCategoria().equals(categorias)) {
 		    	 posts.add(post); 
@@ -56,7 +55,6 @@ public class Blog {
 
 	public Set<Post> obterPostsPorAutor(Autor autor) {
 		Set<Post> posts = new TreeSet<Post>(Comparator.comparing(Post::getTitulo));
-		
 		for (Post post : postagens) {
 			if(post.getAutor().getNome().equalsIgnoreCase(autor.getNome())) {
 				posts.add(post);
@@ -77,12 +75,10 @@ public class Blog {
 
 	public Map<Autor, Set<Post>> obterTodosPostsPorAutor() {
 		Map<Autor, Set<Post>> autores = new TreeMap<Autor, Set<Post>>(Comparator.comparing(Autor::getNome));
-
         for (Post post : postagens) {
             Autor autor = post.getAutor();
             autores.computeIfAbsent(autor, k -> new TreeSet<>(Comparator.comparing(Post::getAutor))).add(post);
         }
-
         return autores;
 	}
 
