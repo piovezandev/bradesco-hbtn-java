@@ -26,7 +26,7 @@ public class Blog {
 	}
 
 	public Set<Autor> obterTodosAutores() {
-		Set<Autor> autores = new TreeSet<>(Comparator.comparing(Autor::getNome));
+		Set<Autor> autores = new TreeSet<Autor>(Comparator.comparing(Autor::getNome));
 		for (Post post : postagens) {
 			autores.add(post.getAutor());
 		}
@@ -34,7 +34,7 @@ public class Blog {
 	}
 
 	public Map<Categorias, Integer> obterContagemPorCategoria() {
-	     Map<Categorias, Integer> map = new TreeMap<>(Comparator.comparing(Categorias::getValores).reversed());
+	     Map<Categorias, Integer> map = new TreeMap<Categorias, Integer>(Comparator.comparing(Categorias::getValores).reversed());
 	     
 	     for (Post post : postagens) {
 	    	 Categorias categoria = post.getCategoria();
@@ -44,7 +44,7 @@ public class Blog {
 	}
 
 	public Set<Post> obterPostsPorCategoria(Categorias categorias) {
-	    Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getTitulo));
+	    Set<Post> posts = new TreeSet<Post>(Comparator.comparing(Post::getTitulo));
 		for (Post post : postagens) {
 			 if(post.getCategoria().equals(categorias)) {
 		    	 posts.add(post); 
