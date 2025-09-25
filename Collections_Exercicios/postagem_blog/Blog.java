@@ -27,7 +27,7 @@ public class Blog {
 	}
 
 	public Map<Categorias, Integer> obterContagemPorCategoria() {
-		Map<Categorias, Integer> map = new TreeMap<>(); // TreeMap ordena pelas chaves naturalmente
+		Map<Categorias, Integer> map = new TreeMap<>();
 		for (Post post : postagens) {
 			Categorias categoria = post.getCategoria();
 			map.put(categoria, map.getOrDefault(categoria, 0) + 1);
