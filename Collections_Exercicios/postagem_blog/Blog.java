@@ -12,7 +12,7 @@ public class Blog {
 		for (Post postagem : postagens) {
 			if (postagem.getAutor().getNome().equalsIgnoreCase(post.getAutor().getNome())
 					&& postagem.getTitulo().equalsIgnoreCase(post.getTitulo())) {
-				throw new IllegalArgumentException("Postagem já existente");
+				throw new IllegalArgumentException("Postagem jah existente");
 			}
 		}
 		postagens.add(post);
