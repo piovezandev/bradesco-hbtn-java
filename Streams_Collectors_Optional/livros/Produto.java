@@ -46,7 +46,8 @@ public class Produto {
 
 	@Override
 	public String toString() {
-        return String.format("[%d] %s %s R$ %.2f", codigo, nome, categoria, preco);
+		String precoAux = String.format("%.2f", preco).replace('.', ',');
+		return String.format("[%d] %s %s R$ %s", codigo, nome, categoria, precoAux);
 	}
 	
 	
