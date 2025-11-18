@@ -1,10 +1,8 @@
-public class Autor<T> implements Comparable<T>{
-
+public class Autor implements Comparable<Autor> {
 	private String nome;
 	private String sobrenome;
 
 	public Autor(String nome, String sobrenome) {
-		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 	}
@@ -13,25 +11,29 @@ public class Autor<T> implements Comparable<T>{
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public String getSobrenome() {
 		return sobrenome;
 	}
 
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
-
 	@Override
 	public String toString() {
-		return nome +" "+ sobrenome;
+		return nome + " " + sobrenome;
 	}
 
 	@Override
-	public int compareTo(T o) {
-		return 0;
+	public boolean equals(Object o) {
+		if (!(o instanceof Autor)) return false;
+		Autor outro = (Autor) o;
+		return this.nome.equals(outro.nome) && this.sobrenome.equals(outro.sobrenome);
+	}
+
+	@Override
+	public int hashCode() {
+		return nome.hashCode() + sobrenome.hashCode();
+	}
+
+	@Override
+	public int compareTo(Autor outro) {
+		return this.toString().compareTo(outro.toString());
 	}
 }

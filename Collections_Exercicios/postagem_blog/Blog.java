@@ -1,25 +1,21 @@
 import java.util.*;
 
 public class Blog {
-
-	private List<Post> postagens;
+	private Set<Post> postagens;
 
 	public Blog() {
-		postagens = new ArrayList<>();
+		this.postagens = new HashSet<>();
 	}
 
-	public void adicionarPostagem(Post post) {
-		for (Post postagem : postagens) {
-			if (postagem.getAutor().getNome().equalsIgnoreCase(post.getAutor().getNome())
-					&& postagem.getTitulo().equalsIgnoreCase(post.getTitulo())) {
-				throw new IllegalArgumentException("Postagem jah existente");
-			}
+	public void adicionarPostagem(Post postagem) {
+		if (postagens.contains(postagem)) {
+			throw new IllegalArgumentException("Postagem jah existente");
 		}
-		postagens.add(post);
+		postagens.add(postagem);
 	}
 
 	public Set<Autor> obterTodosAutores() {
-		Set<Autor> autores = new TreeSet<>(Comparator.comparing(Autor::getNome));
+		Set<Autor> autores = new TreeSet<>();
 		for (Post post : postagens) {
 			autores.add(post.getAutor());
 		}
@@ -27,28 +23,28 @@ public class Blog {
 	}
 
 	public Map<Categorias, Integer> obterContagemPorCategoria() {
-		Map<Categorias, Integer> map = new TreeMap<>();
+		Map<Categorias, Integer> contagem = new TreeMap<>();
 		for (Post post : postagens) {
-			Categorias categoria = post.getCategoria();
-			map.put(categoria, map.getOrDefault(categoria, 0) + 1);
+			Categorias cat = post.getCategoria();
+			contagem.put(cat, contagem.getOrDefault(cat, 0) + 1);
 		}
-		return map;
+		return contagem;
 	}
 
-	public Set<Post> obterPostsPorCategoria(Categorias categoriaDesejada) {
-		Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getTitulo));
+	public Set<Post> obterPostsPorAutor(Autor autor) {
+		Set<Post> posts = new TreeSet<>();
 		for (Post post : postagens) {
-			if (post.getCategoria().equals(categoriaDesejada)) {
+			if (post.getAutor().equals(autor)) {
 				posts.add(post);
 			}
 		}
 		return posts;
 	}
 
-	public Set<Post> obterPostsPorAutor(Autor autor) {
-		Set<Post> posts = new TreeSet<>(Comparator.comparing(Post::getTitulo));
+	public Set<Post> obterPostsPorCategoria(Categorias categoria) {
+		Set<Post> posts = new TreeSet<>();
 		for (Post post : postagens) {
-			if (post.getAutor().getNome().equalsIgnoreCase(autor.getNome())) {
+			if (post.getCategoria() == categoria) {
 				posts.add(post);
 			}
 		}
@@ -56,22 +52,22 @@ public class Blog {
 	}
 
 	public Map<Categorias, Set<Post>> obterTodosPostsPorCategorias() {
-		Map<Categorias, Set<Post>> categorias = new TreeMap<Categorias, Set<Post>>();
+		Map<Categorias, Set<Post>> mapa = new TreeMap<>();
 		for (Post post : postagens) {
-			categorias.computeIfAbsent(post.getCategoria(), k ->
-					new TreeSet<>(Comparator.comparing(Post::getTitulo))
-			).add(post);
+			Categorias cat = post.getCategoria();
+			mapa.putIfAbsent(cat, new TreeSet<>());
+			mapa.get(cat).add(post);
 		}
-		return categorias;
+		return mapa;
 	}
 
 	public Map<Autor, Set<Post>> obterTodosPostsPorAutor() {
-		Map<Autor, Set<Post>> autores = new TreeMap<>(Comparator.comparing(Autor::getNome));
+		Map<Autor, Set<Post>> mapa = new TreeMap<>();
 		for (Post post : postagens) {
-			autores.computeIfAbsent(post.getAutor(), k ->
-					new TreeSet<>(Comparator.comparing(Post::getTitulo))
-			).add(post);
+			Autor autor = post.getAutor();
+			mapa.putIfAbsent(autor, new TreeSet<>());
+			mapa.get(autor).add(post);
 		}
-		return autores;
+		return mapa;
 	}
 }
